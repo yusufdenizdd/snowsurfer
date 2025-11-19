@@ -249,7 +249,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -5336,6 +5336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FinishLine
   invokeTime: 1
+  finishParticles: {fileID: 2018103922}
 --- !u!61 &787793417
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5449,7 +5450,7 @@ Transform:
   m_GameObject: {fileID: 787793415}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.048089992, w: 0.998843}
-  m_LocalPosition: {x: 19.4, y: 3.16, z: 0}
+  m_LocalPosition: {x: 209.1, y: -16.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5515,7 +5516,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5584,9 +5585,9 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 0
+  looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -5652,8 +5653,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1
-      minScalar: 0.3
+      scalar: 0.4
+      minScalar: 0.1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5823,7 +5824,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.27
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -6200,15 +6201,15 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 12
+    type: 4
     angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
-    m_Position: {x: 0, y: -1.95, z: 0}
-    m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 1, y: 1, z: 1}
+    m_Position: {x: -0.54, y: -2.24, z: 0}
+    m_Rotation: {x: 0, y: -26.92, z: 0}
+    m_Scale: {x: 1.44, y: 0.25, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -6406,7 +6407,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 200
+      scalar: 60
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -10305,6 +10306,7 @@ GameObject:
   - component: {fileID: 872223155}
   - component: {fileID: 872223158}
   - component: {fileID: 872223159}
+  - component: {fileID: 872223160}
   m_Layer: 7
   m_Name: Level Sprite Shape
   m_TagString: Untagged
@@ -10903,6 +10905,19 @@ SurfaceEffector2D:
   m_UseContactForce: 0
   m_UseFriction: 1
   m_UseBounce: 1
+--- !u!114 &872223160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872223154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b4c197e1e4b419ca1c3a9b32a55154, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FrictionEffect
+  frictionParticles: {fileID: 853179914}
 --- !u!1 &1542818299
 GameObject:
   m_ObjectHideFlags: 0
@@ -11123,7 +11138,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -15958,6 +15973,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CrashDetector
   invokeTime: 1
+  crashParticles: {fileID: 432569984}
 --- !u!58 &2117986718
 CircleCollider2D:
   m_ObjectHideFlags: 0
