@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 public class FinishLine : MonoBehaviour
 {
     [SerializeField] float invokeTime = 1f;
+    [SerializeField] ParticleSystem finishParticles;
+
     void ReloadScene()
     {
         SceneManager.LoadScene(0);
@@ -19,7 +21,8 @@ public class FinishLine : MonoBehaviour
         int layerIndex = LayerMask.NameToLayer("Player"); // 6
         if (other.gameObject.layer == layerIndex)
         {
-            print("çizgiyi geçtin, kazandın");
+            //print("çizgiyi geçtin, kazandın");
+            finishParticles.Play();
             //SceneManager.LoadScene(0);
             Invoke("ReloadScene", invokeTime);
         }

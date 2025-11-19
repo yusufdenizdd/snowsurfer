@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 public class CrashDetector : MonoBehaviour
 {
     [SerializeField] float invokeTime = 1f;
+    [SerializeField] ParticleSystem crashParticles;
     void ReloadScene()
     {
         SceneManager.LoadScene(0);
@@ -12,8 +13,9 @@ public class CrashDetector : MonoBehaviour
         int layerIndex = LayerMask.NameToLayer("Floor");
         if (other.gameObject.layer == layerIndex)
         {
-            print("kafanı yere vurduni kaybettin");
+            //print("kafanı yere vurdun kaybettin");
             //SceneManager.LoadScene(0);
+            crashParticles.Play();
             Invoke("ReloadScene", invokeTime);
         }
     }
