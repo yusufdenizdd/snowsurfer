@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,16 +9,22 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float baseSpeed = 15f;
     [SerializeField] float boostSpeed = 20f;
     bool canControlPlayer = true;
+    float previousRotation;
+    float currentRotation;
+    float totalRotation;
+    int flipCount = 0;
     InputAction moveAction;
     Rigidbody2D myRigidbody2D;
     SurfaceEffector2D surfaceEffector2D;
     Vector2 moveVector;
+    ScoreManager scoreManager;
     void Start()
     {
 
         moveAction = InputSystem.actions.FindAction("Move");
         myRigidbody2D = GetComponent<Rigidbody2D>();
         surfaceEffector2D = FindFirstObjectByType<SurfaceEffector2D>();
+        scoreManager = FindFirstObjectByType<ScoreManager>();
 
     }
 
@@ -30,6 +37,7 @@ public class PlayerController : MonoBehaviour
             BoostPlayer();
 
         }
+        CalculateFlips();
     }
 
     void RotatePlayer()
@@ -59,8 +67,38 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    void CalculateFlips()
+    {
+        currentRotation = transform.rotation.eulerAngles.z;
+        totalRotation += Mathf.DeltaAngle(previousRotation, currentRotation);
+        if (totalRotation >= 340 || totalRotation <= -340)
+        {
+            flipCount += 1;
+            totalRotation = 0;
+            Debug.Log(flipCount);
+            scoreManager.AddScore(100);
+
+        }
+        previousRotation = currentRotation;
+    }
+
     public void DisableControls()
     {
         canControlPlayer = false;
+    }
+
+    public void ActivatePowerup(PowerupSO powerup)
+    {
+        if (powerup.GetPowerupType() == "speed")
+        {
+            baseSpeed += powerup.GetPowerupValueChange();
+            boostSpeed += powerup.GetPowerupValueChange();
+
+        }
+        if (powerup.GetPowerupType() == "torque")
+        {
+            torqueAmount += powerup.GetPowerupValueChange();
+
+        }
     }
 }
