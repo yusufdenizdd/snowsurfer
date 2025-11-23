@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     SurfaceEffector2D surfaceEffector2D;
     Vector2 moveVector;
     ScoreManager scoreManager;
+    [SerializeField] ParticleSystem powerupParticle;
+    int activePowerupCount = 0;
     void Start()
     {
 
@@ -89,6 +91,8 @@ public class PlayerController : MonoBehaviour
 
     public void ActivatePowerup(PowerupSO powerup)
     {
+        powerupParticle.Play();
+        activePowerupCount += 1;
         if (powerup.GetPowerupType() == "speed")
         {
             baseSpeed += powerup.GetPowerupValueChange();
@@ -100,5 +104,26 @@ public class PlayerController : MonoBehaviour
             torqueAmount += powerup.GetPowerupValueChange();
 
         }
+
+    }
+
+    public void DeactivatePowerup(PowerupSO powerup)
+    {
+        activePowerupCount -= 1;
+        if (activePowerupCount == 0)
+        {
+            powerupParticle.Stop();
+        }
+        if (powerup.GetPowerupType() == "speed")
+        {
+            baseSpeed -= powerup.GetPowerupValueChange();
+            boostSpeed -= powerup.GetPowerupValueChange();
+        }
+        if (powerup.GetPowerupType() == "torque")
+        {
+            torqueAmount += powerup.GetPowerupValueChange();
+        }
+
+
     }
 }
