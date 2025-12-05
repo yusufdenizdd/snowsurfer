@@ -122,7 +122,7 @@ public class PlayerController : MonoBehaviour
         }
         if (powerup.GetPowerupType() == "torque")
         {
-            torqueAmount += powerup.GetPowerupValueChange();
+            torqueAmount -= powerup.GetPowerupValueChange();
         }
 
 

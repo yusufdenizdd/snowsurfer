@@ -3,6 +3,8 @@ using UnityEngine;
 public class FrictionEffect : MonoBehaviour
 {
 
+    [SerializeField] ParticleSystem frictionParticles;
+
     void playFrictionEffect()
     {
         frictionParticles.Play();
@@ -12,7 +14,6 @@ public class FrictionEffect : MonoBehaviour
     {
         frictionParticles.Stop();
     }
-    [SerializeField] ParticleSystem frictionParticles;
     void OnCollisionEnter2D(Collision2D collision)
     {
 
